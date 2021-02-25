@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Project.Core.Objects.Interview>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Interviewer
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @item.User.Name
+        </td>
+        <td>
+            <table class="table">
+                <tr>
+                    <th>
+                        Applicant
+                    </th>
+                    <th>
+                        Vacancy
+                    </th>
+                    <th>
+                        Interview time
+                    </th>
+                    
+                </tr>
+                @foreach (var interview in item.VacancyApplicants.Where(p=>p.Status=="doing"))
+                {
+                    <tr>
+                        <td>
+                            @interview.ApplicantId - @interview.Applicant.Name
+                        </td>
+                        <td>
+                            @interview.VacancyId - @interview.Vacancy.Name
+                        </td>
+                        <td>
+                            @interview.InterviewTime
+                        </td>
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+}
+
+</table>

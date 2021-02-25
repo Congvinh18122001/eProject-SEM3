@@ -1,0 +1,281 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recruit HR Management Category Flat Bootstrap Responsive website Template | Home :: w3layouts</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+          rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+</head>
+<body>
+    <!-- Sliderr -->
+    <div class="w3-banner-info-w3ltd position-relative">
+        <!-- header -->
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light p-0">
+                    <h1>
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                            Recruit
+                        </a>
+                    </h1>
+                    <button class="navbar-toggler ml-lg-auto ml-sm-5 bg-light" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="ml-lg-5 navbar-nav mr-lg-auto">
+                            <li class="nav-item active  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                                <a href="@Url.Action("Index", "Home")">Home</a>
+                            </li>
+                            <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
+                                @Html.ActionLink("About", "About", "Home")
+                            </li>
+                            <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3">
+                                @Html.ActionLink("Vacancy", "Index", "Vacancies")
+                            </li>
+                            <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
+                                @Html.ActionLink("Contact", "Contact", "Home")
+                            </li>
+                        </ul>
+                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
+                                aria-pressed="false" data-target="#exampleModal1">
+                            Register
+                        </button>
+                        <button type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block"
+                                data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
+                            Sign in
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- //header -->
+        <div class="slider">
+            <ul class="rslides" id="slider">
+                <li>
+                    <div class="d-flex banner-w3pvt-bg1 common-bg">
+                        <div class="d-flex mx-auto align-items-center justify-content-center flex-column">
+                            <div class="bnr-w3pvt">
+                                <h3>global recruitment</h3>
+                                <div class="d-flex justify-content-between bnr-sub-txt align-items-center">
+                                    <span></span>
+                                    <p class="text-uppercase text-white">allowing you to expand quickly</p>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between bnr-form-w3ls">
+                                <div class="col-lg-4">
+                                    <h4>A better career is out there. We'll help you find it to use.</h4>
+                                </div>
+                                <div class="col-lg-8">
+                                    <form action="job_list.html" method="post" class="bnr-field">
+                                        <div class="row">
+                                            <div class="col-md-5 form-group mb-md-0">
+                                                <label class="text-capitalize">
+                                                    looking for job
+                                                </label>
+                                                <input class="form-control" type="text" name="name" required=""
+                                                       placeholder="Job title,Keywords">
+                                            </div>
+                                            <div class="col-md-5 mb-md-0 form-group">
+                                                <label class="text-capitalize">
+                                                    place to work
+                                                </label>
+                                                <input class="form-control" type="text" name="place" required=""
+                                                       placeholder="City,State,zip">
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-end">
+                                                <button type="submit" class="btn btn-w3ltd btn-block w-100 bg-theme font-weight-bold text-uppercase">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex banner-w3pvt-bg2 common-bg">
+                        <div class="d-flex mx-auto align-items-center justify-content-center flex-column">
+                            <div class="bnr-w3pvt">
+                                <h3>global recruitment</h3>
+                                <div class="d-flex justify-content-between bnr-sub-txt align-items-center">
+                                    <span></span>
+                                    <p class="text-uppercase text-white">allowing you to expand quickly</p>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between bnr-form-w3ls">
+                                <div class="col-lg-4">
+                                    <h4>A better career is out there. We'll help you find it to use.</h4>
+                                </div>
+                                <div class="col-lg-8">
+                                    <form action="job_list.html" method="post" class="bnr-field">
+                                        <div class="row">
+                                            <div class="col-md-5 form-group mb-md-0">
+                                                <label class="text-capitalize">
+                                                    looking for job
+                                                </label>
+                                                <input class="form-control" type="text" name="name" required=""
+                                                       placeholder="Job title,Keywords">
+                                            </div>
+                                            <div class="col-md-5 mb-md-0 form-group">
+                                                <label class="text-capitalize">
+                                                    place to work
+                                                </label>
+                                                <input class="form-control" type="text" name="place" required=""
+                                                       placeholder="City,State,zip">
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-end">
+                                                <button type="submit" class="btn btn-w3ltd bg-theme btn-block w-100 font-weight-bold text-uppercase">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="d-flex banner-w3pvt-bg3 common-bg">
+                        <div class="d-flex mx-auto align-items-center justify-content-center flex-column">
+                            <div class="bnr-w3pvt">
+                                <h3>global recruitment</h3>
+                                <div class="d-flex justify-content-between bnr-sub-txt align-items-center">
+                                    <span></span>
+                                    <p class="text-uppercase text-white">allowing you to expand quickly</p>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between bnr-form-w3ls">
+                                <div class="col-lg-4">
+                                    <h4>A better career is out there. We'll help you find it to use.</h4>
+                                </div>
+                                <div class="col-lg-8">
+                                    <form action="job_list.html" method="post" class="bnr-field">
+                                        <div class="row">
+                                            <div class="col-md-5 form-group mb-md-0">
+                                                <label class="text-capitalize">
+                                                    looking for job
+                                                </label>
+                                                <input class="form-control" type="text" name="name" required=""
+                                                       placeholder="Job title,Keywords">
+                                            </div>
+                                            <div class="col-md-5 mb-md-0 form-group">
+                                                <label class="text-capitalize">
+                                                    place to work
+                                                </label>
+                                                <input class="form-control" type="text" name="place" required=""
+                                                       placeholder="City,State,zip">
+                                            </div>
+                                            <div class="col-md-2 d-flex align-items-end">
+                                                <button type="submit" class="btn btn-w3ltd bg-theme  btn-block w-100 font-weight-bold text-uppercase">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#slider, #slider1").responsiveSlides({
+                auto: true,
+                nav: false,
+                speed: 1500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <!-- //Slider-JavaScript -->
+    <!-- script for password match -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script src="~/Scripts/move-top.js"></script>
+    <script src="~/Scripts/easing.js"></script>
+    <script src="~/Scripts/SmoothScroll.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+
+</html>

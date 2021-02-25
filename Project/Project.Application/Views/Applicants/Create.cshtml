@@ -1,0 +1,394 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Client.cshtml";
+    int vacancyId = ViewBag.vacancyId;
+}
+@{
+    ViewBag.Title = "Job_list";
+}
+
+<div class="inner-banner-w3ls">
+</div>
+<!-- breadcrumbs -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb d-flex justify-content-center bg-theme">
+        <li class="breadcrumb-item">
+            <a href="index.html" class="text-white">Home</a>
+        </li>
+        <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Job List</li>
+    </ol>
+</nav>
+<!-- //breadcrumbs -->
+<!-- jobs -->
+<section class="employ-sec">
+    <div class="container">
+        <div class="title-sec-w3layouts_pvt text-center pb-4">
+            <span class="title-wthree">a world full of possibilities</span>
+            <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
+        </div>
+        @using (Html.BeginForm("Create", "Applicants", FormMethod.Post, new { id = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Applicant</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <input name="vacancyId" value="@vacancyId" style="display:none" />
+        <div class="form-group">
+            <label class="control-label col-md-2">Name</label>
+            <div class="col-md-10">
+                <input name="Name" class="form-control" type="text" onkeyup="checkName()" id="name"  required/>
+                <span id="checkname" style="color:red"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">BirthDay</label>
+            <div class="col-md-10">
+                <input class="form-control" name="BirthDay" onchange="checkBirthday()" id="birthday" type="datetime-local" required />
+                <span id="checkBirthday" style="color:red"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Address</label>
+            <div class="col-md-10">
+                <input name="Address" class="form-control" onkeyup="checkAddress()" id="address" type="text"  required/>
+                <span id="checkaddress" style="color:red"></span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email</label>
+            <div class="col-md-10">
+                <input name="Email" class="form-control" type="email" id="email" onkeyup="checkEmail()"  required/>
+                <span id="checkemail" style="color:red"></span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Phone</label>
+            <div class="col-md-10">
+                <input name="Phone" class="form-control" id="phone" onkeyup="checkPhone()" type="text" required/>
+                <span id="checkphone" style="color:red"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Experience</label>
+            <div class="col-md-10">
+                <input name="Experience" class="form-control" id="experience" onkeyup="checkExperience()" type="text"  required/>
+                <span id="checkexprience" style="color:red"></span>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Academic Level</label>
+            <div class="col-md-10">
+                <input name="AcademicLevel" class="form-control" id="academiclevel" onkeyup="academicLevel()" type="text"  required/>
+                <span id="checkacademic" style="color:red"></span>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Interview Time</label>
+            <div class="col-md-10">
+                <input name="InterviewTime" class="form-control" id="interviewtime" onchange="checkInterviewTime()" type="datetime-local" required/>
+                <span id="checktime" style="color:red"></span>
+            </div>
+            
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input value="Create" type="button" onclick="CheckSubmit()"  class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+        }
+    </div>
+</section>
+<!-- //jobs -->
+<!-- Footer -->
+<footer id="footer" class="py-sm-5 py-4 bg-theme">
+    <div class="container">
+        <div class="footer-top-w3ls">
+            <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
+            <p class="text-white">
+                Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
+                ut labore et dolore magna aliquyam
+                erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
+                takimata sanctus est Lorem ipsum dolor sit amet. Stet clita kasd gubergren, no sea takimata sanctus
+                est
+                Lorem ipsum dolor sit amet. no sea takimata sanctus est Lorem ipsum dolor sit amet. no sea takimata
+                sanctus est Lorem ipsum dolor sit amet. sed diam voluptua.
+            </p>
+        </div>
+        <div class="row  pt-5">
+            <div class="col-lg-3 col-sm-6 footer_grid1">
+                <h5>Address</h5>
+                <div class="d-flex align-items-center">
+                    <span class="fa fa-building mr-4"></span>
+                    <p>
+                        90 Street, landmark
+                        <br>City State 34189.
+                    </p>
+                </div>
+                <div class="d-flex mt-3 align-items-center">
+                    <span class="fa fa-building mr-4"></span>
+                    <p>
+                        16 Street, landmark
+                        <br>City State 74789.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5">
+                <h5>Quick links</h5>
+                <ul class="list-unstyled quick-links">
+                    <li>
+                        <a href="index.html">
+                            <span class="fa fa-play"></span>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="fa fa-play"></span>About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_list.html">
+                            <span class="fa fa-play"></span>Job List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_single.html">
+                            <span class="fa fa-play"></span>Job Single
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html">
+                            <span class="fa fa-play"></span>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
+                <h5>Quick links</h5>
+                <ul class="list-unstyled quick-links">
+                    <li>
+                        <a href="index.html">
+                            <span class="fa fa-play"></span>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="fa fa-play"></span>About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_list.html">
+                            <span class="fa fa-play"></span>Job List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_single.html">
+                            <span class="fa fa-play"></span>Job Single
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html">
+                            <span class="fa fa-play"></span>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
+                <h5>subscribe to newsletter</h5>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="email" class="form-control  border-0 border-rounded" id="emailid" placeholder="Enter email"
+                               name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="Submit" class="form-control bg-light-theme  border-0 border-rounded" id="sub"
+                               value="Submit" name="sub">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- /Footer -->
+<div class="cpy-right text-center py-4">
+    <p class="text-dark">
+        © 2018 Recruit. All rights reserved | Design by
+        <a href="http://w3layouts.com" class="text-theme"> W3layouts.</a>
+    </p>
+</div>
+<script>
+    var checkValid = true;
+    function checkInterviewTime() {
+        var a = $("#interviewtime").val();
+        var interviewtime = new Date(a);
+
+        var timeNow = new Date();
+
+        if (interviewtime <= timeNow) {
+            document.getElementById("checktime").innerHTML = "*Your interview date must be greater than the current date.";
+            checkValid = false;
+
+        } else {
+            document.getElementById("checktime").innerHTML = "";
+            checkValid = true;
+        }
+    }
+    function checkBirthday() {
+        var b = $("#birthday").val();
+        var birthday = new Date(b);
+
+        var timeNow = new Date();
+
+        if (birthday >= timeNow) {
+            document.getElementById("checkBirthday").innerHTML = "*Your birthday must be less than the current date.";
+            checkValid = false;
+
+        }
+        else {
+            document.getElementById("checkBirthday").innerHTML = "";
+            checkValid = true;
+        }
+    }
+    function checkPhone() {
+        var phone = $("#phone").val();
+        var vnf_regex = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+
+        if (phone !== "") {
+            if (vnf_regex.test(phone) == false) {
+                document.getElementById("checkphone").innerHTML = "*Your phone number is not valid.";
+                checkValid = false;
+
+            } else {
+                document.getElementById("checkphone").innerHTML = "";
+                checkValid = true;
+            }
+        }
+        else {
+            document.getElementById("checkphone").innerHTML = "*You didn't enter a phone number."
+            checkValid = false;
+
+        }
+    }
+    function checkEmail() {
+        var email = $("#email").val();
+        var vnf_regex = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        if (email !== "") {
+            if (vnf_regex.test(email) == false) {
+                document.getElementById("checkemail").innerHTML = "*Your email is not valid.";
+                checkValid = false;
+
+            } else {
+                document.getElementById("checkemail").innerHTML = "";
+                checkValid = true;
+            }
+        }
+        else {
+            document.getElementById("checkemail").innerHTML = "*Your didn't enter a email.";
+            checkValid = false;
+
+        }
+    }
+    function checkAddress() {
+        var address = $("#address").val();
+        var vnf_regex = /^[a-zA-Z0-9-\s\,\''\-]*$/;
+
+        if (address !== "") {
+            if (vnf_regex.test(address) == false) {
+                document.getElementById("checkaddress").innerHTML = "*The address must not contain special characters";
+                checkValid = false;
+
+            }
+            else {
+                document.getElementById("checkaddress").innerHTML = "";
+                checkValid = true;
+            }
+        }
+        else {
+            document.getElementById("checkaddress").innerHTML = "*Your didn't enter a address.";
+            checkValid = false;
+
+        }
+    }
+    function checkName() {
+        var name = $("#name").val();
+        var vnf_regex = /^[a-zA-Z-\s\,\''\-]*$/;
+
+        if (name !== "") {
+            if (vnf_regex.test(name) == false) {
+                document.getElementById("checkname").innerHTML = "*The address must not contain special characters";
+                checkValid = false;
+            }
+            else {
+                document.getElementById("checkname").innerHTML = "";
+                checkValid = true;
+            }
+        }
+        else {
+            document.getElementById("checkname").innerHTML = "*Your didn't enter a name.";
+            checkValid = false;
+
+        }
+    }
+    function checkExperience() {
+        var experience = $("#experience").val();
+        var vnf_regex = /^[a-zA-Z0-9-\s\,\''\-]*$/;
+
+        if (experience !== "") {
+            if (vnf_regex.test(experience) == false) {
+                document.getElementById("checkexprience").innerHTML = "*The address must not contain special characters";
+                checkValid = false;
+            }
+            else {
+                document.getElementById("checkexprience").innerHTML = "";
+                checkValid = true;
+            }
+        }
+        else {
+            document.getElementById("checkexprience").innerHTML = "*Your didn't enter a exprience.";
+            checkValid = false;
+        }
+    }
+    function academicLevel() {
+        var academiclevel = $("#academiclevel").val();
+        var vnf_regex = /^[a-zA-Z0-9-\s\,\''\-]*$/;
+
+        if (academiclevel !== "") {
+            if (vnf_regex.test(academiclevel) == false) {
+                document.getElementById("checkacademic").innerHTML = "*The address must not contain special characters";
+                checkValid = false;
+
+            }
+            else {
+                document.getElementById("checkacademic").innerHTML = "";
+                checkValid = true;
+            }
+        }
+        else {
+            document.getElementById("checkacademic").innerHTML = "*Your didn't enter a academic.";
+            checkValid = false;
+        }
+    }
+    function CheckSubmit() {
+        if (checkValid) {
+            alert("Success!!");
+            $("#form").submit();
+        } else {
+            alert("Error!!");
+        }
+    }
+</script>

@@ -1,0 +1,14 @@
+D:\SEM3\Project\Project.Core\bin\Debug\Project.Core.dll.config
+D:\SEM3\Project\Project.Core\bin\Debug\Project.Core.dll
+D:\SEM3\Project\Project.Core\bin\Debug\Project.Core.pdb
+D:\SEM3\Project\Project.Core\bin\Debug\EntityFramework.dll
+D:\SEM3\Project\Project.Core\bin\Debug\EntityFramework.SqlServer.dll
+D:\SEM3\Project\Project.Core\bin\Debug\EntityFramework.xml
+D:\SEM3\Project\Project.Core\bin\Debug\EntityFramework.SqlServer.xml
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.csprojAssemblyReference.cache
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.csproj.CoreCompileInputs.cache
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.csproj.CopyComplete
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.dll
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.pdb
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.Migrations.eProjectDbv1.resources
+D:\SEM3\Project\Project.Core\obj\Debug\Project.Core.csproj.GenerateResource.cache

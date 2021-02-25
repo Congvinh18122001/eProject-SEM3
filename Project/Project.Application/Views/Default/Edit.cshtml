@@ -1,0 +1,63 @@
+﻿@model Project.Core.Objects.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Save","Default",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>User</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Email</label>
+        <div class="col-md-10">
+            <input name="Email" value="@Model.Email" class="form-control" id="Email" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Avatar</label>
+        <div class="col-md-10">
+            <input name="Avatar" value="@Model.Avatar" class="form-control" onchange="changeAvatar()" id="avatar" placeholder="Image link" />
+            <img src="@Model.Avatar" width="60px" height="80px" id="avt" />
+            @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Old Password</label>
+        <div class="col-md-10">
+            <input name="OldPass" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">New Password</label>
+        <div class="col-md-10">
+            <input name="NewPass"  class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Profile", "Profile")
+</div>
+<script>
+    function changeAvatar() {
+        src = $("#avatar").val();
+        $("#avt").attr("src", src);
+    }
+</script>

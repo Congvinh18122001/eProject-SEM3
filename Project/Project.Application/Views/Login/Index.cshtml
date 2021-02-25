@@ -1,0 +1,39 @@
+﻿
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="~/Content/Login/css/style.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-default">Home</a> 
+    <div class="main">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            <h1><span>Employer</span> <lable> Login </lable> </h1>
+            <div class="inset">
+                <p>
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="text" name="Email" placeholder="" required="">
+                </p>
+                <p>
+                    <label for="password">PASSWORD</label>
+                    <input type="password" name="Password" placeholder="" required="">
+                </p>
+            </div>
+
+            <p class="p-container">
+                <input type="submit" value="Login">
+            </p>
+        }
+    </div>
+    <div class="copy-right">
+        <p>Template by <a href="http://w3layouts.com">w3layouts</a></p>
+    </div>
+</body>
+</html>

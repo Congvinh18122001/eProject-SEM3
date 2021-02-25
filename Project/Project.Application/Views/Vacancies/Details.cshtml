@@ -1,0 +1,215 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+@model Project.Core.Objects.Vacancy
+<!-- breadcrumbs -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb d-flex justify-content-center bg-theme">
+        <li class="breadcrumb-item">
+            <a href="index.html" class="text-white">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "Vacancies")" class="text-white">Job List</a>
+        </li>
+    </ol>
+</nav>
+<!-- //breadcrumbs -->
+<!-- job description -->
+<section class="employ-sec">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9  mx-auto" id="job-desc">
+                <div class="title-sec-w3layouts_pvt text-center pb-4">
+                    <span class="title-wthree">a world full of possibilities</span>
+                    <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
+                    <p class="my-lg-4 mt-4 js_txt">
+                        Donec consequat sapien ut leo cursus rhoncus. Nullam dui mi, vulputate
+                        ac
+                        metus at, semper
+                        varius orci. Nulla accumsan
+                        ac elit in congue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                        inceptos Class aptent taciti
+                        sociosqu ad litora s aptent taciti sociosqu ad litora torquent per torquent p himenaeos.
+                    </p>
+                    <a href="#job-desc" class="btn wthree-bnr-btn scroll ">Read more</a>
+                </div>
+                <div class="e-left pt-lg-5">
+                    <hr>
+                    <div class="e-desc">
+                        <div class="job-desc-w3ls">
+                            <ul>
+                                <li>Role: <strong>@Html.DisplayFor(model => model.Name)</strong></li>
+                                <li>Industry: <strong>Sortware</strong></li>
+                                <li>Company size: <strong> 5k-10k People</strong></li>
+                                <li>Job type: <strong>Permanent</strong></li>
+                                <li>Experience level: <strong>@Html.DisplayFor(model => model.Experience)</strong></li>
+                                <li>Salary: <strong>@Html.DisplayFor(model => model.Salary)</strong></li>
+                                <li>Location: <strong>@Html.DisplayFor(model => model.Location)</strong></li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="tech-job">
+                            <h5 class="w3layouts_pvt-head">technologies included.</h5>
+                            <ul class="e-tags">
+                                <li>@Html.DisplayFor(model => model.Language)</li>
+
+                            </ul>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="job-role">
+                    <h5 class="w3layouts_pvt-head">get to know the role</h5>
+                    <p>
+                        @Html.DisplayFor(model => model.Description)
+                    </p>
+                    <div class=" job-desc-w3ls">
+                        <ul class="mt-3">
+                            <li>
+                                <i class="fa fa-angle-right mr-3"></i>Cras justo odio
+                            </li>
+                            <li>
+                                <i class="fa fa-angle-right mr-3"></i>Dapibus ac facilisis in
+                            </li>
+                            <li>
+                                <i class="fa fa-angle-right mr-3"></i>Morbi leo risus
+                            </li>
+                            <li>
+                                <i class="fa fa-angle-right mr-3"></i>Porta ac consectetur ac
+                            </li>
+                            <li>
+                                <i class="fa fa-angle-right  mr-3"></i>Vestibulum at eros
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="@Url.Action("Create", "Applicants", new { id = Model.Id })" class="btn wthree-bnr-btn text-capitalize">
+                    Apply for job
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- //job description -->
+<!-- Footer -->
+<footer id="footer" class="py-sm-5 py-4 bg-theme">
+    <div class="container">
+        <div class="footer-top-w3ls">
+            <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
+            <p class="text-white">
+                Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
+                ut labore et dolore magna aliquyam
+                erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
+                takimata sanctus est Lorem ipsum dolor sit amet. Stet clita kasd gubergren, no sea takimata sanctus
+                est
+                Lorem ipsum dolor sit amet. no sea takimata sanctus est Lorem ipsum dolor sit amet. no sea takimata
+                sanctus est Lorem ipsum dolor sit amet. sed diam voluptua.
+            </p>
+        </div>
+        <div class="row  pt-5">
+            <div class="col-lg-3 col-sm-6 footer_grid1">
+                <h5>Address</h5>
+                <div class="d-flex align-items-center">
+                    <span class="fa fa-building mr-4"></span>
+                    <p>
+                        90 Street, landmark
+                        <br>City State 34189.
+                    </p>
+                </div>
+                <div class="d-flex mt-3 align-items-center">
+                    <span class="fa fa-building mr-4"></span>
+                    <p>
+                        16 Street, landmark
+                        <br>City State 74789.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5">
+                <h5>Quick links</h5>
+                <ul class="list-unstyled quick-links">
+                    <li>
+                        <a href="index.html">
+                            <span class="fa fa-play"></span>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="fa fa-play"></span>About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_list.html">
+                            <span class="fa fa-play"></span>Job List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_single.html">
+                            <span class="fa fa-play"></span>Job Single
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html">
+                            <span class="fa fa-play"></span>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
+                <h5>Quick links</h5>
+                <ul class="list-unstyled quick-links">
+                    <li>
+                        <a href="index.html">
+                            <span class="fa fa-play"></span>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="fa fa-play"></span>About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_list.html">
+                            <span class="fa fa-play"></span>Job List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="job_single.html">
+                            <span class="fa fa-play"></span>Job Single
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact.html">
+                            <span class="fa fa-play"></span>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
+                <h5>subscribe to newsletter</h5>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <input type="email" class="form-control  border-0 border-rounded" id="emailid" placeholder="Enter email"
+                               name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="Submit" class="form-control bg-light-theme  border-0 border-rounded" id="sub"
+                               value="Submit" name="sub">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- /Footer -->
+<div class="cpy-right text-center py-4">
+    <p class="text-dark">
+        © 2018 Recruit. All rights reserved | Design by
+        <a href="http://w3layouts.com" class="text-theme"> W3layouts.</a>
+    </p>
+</div>
