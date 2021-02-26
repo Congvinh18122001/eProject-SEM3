@@ -151,24 +151,18 @@
             </div>
             <div class="col-lg-8">
                 <div class="row">
-                    @using (Html.BeginForm(
-"Search", //AcctionName
-"Vacancies", //ControllerName
-FormMethod.Get, //get form url
-new { id = "search-form" } // id of form is search-form
-))
-                    {
-                        <p>@Html.TextBox("search")</p>
-                        <p><input type="submit" value="Search" /></p>
-                    }
                     @foreach (var item in Model)
                     {
                         <div class="col-sm-6 e-left">
                             <div class="e-desc">
                                 <h6><a href="@Url.Action("Details", "Vacancies", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a></h6>
+                                
                                 <ul class="e-tags">
                                     <li>
                                         @Html.DisplayFor(modelItem => item.Language)
+                                    </li>
+                                    <li>
+                                        Applicant - @item.VacancyApplicants.Count()
                                     </li>
                                 </ul>
                                 <hr>

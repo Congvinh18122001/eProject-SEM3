@@ -35,20 +35,27 @@
                     <th>
                         Interview time
                     </th>
+                    <th>
+
+                    </th>
                     
                 </tr>
                 @foreach (var interview in item.VacancyApplicants.Where(p=>p.Status=="doing"))
                 {
-                    <tr>
-                        <td>
-                            @interview.ApplicantId - @interview.Applicant.Name
-                        </td>
-                        <td>
-                            @interview.VacancyId - @interview.Vacancy.Name
-                        </td>
-                        <td>
-                            @interview.InterviewTime
-                        </td>
+            <tr>
+                <td>
+                    @interview.ApplicantId - @interview.Applicant.Name
+                </td>
+                <td>
+                    @interview.VacancyId - @interview.Vacancy.Name
+                </td>
+                <td>
+                    @interview.InterviewTime
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "VacancyApplicant", new { id = interview.Id },null) |
+                    @Html.ActionLink("Details", "Details", "VacancyApplicant", new { id = interview.Id },null)
+                </td>
                     </tr>
                 }
             </table>

@@ -14,7 +14,7 @@ namespace Project.Core.Models
             return vacancy;
         }
 
-        public VacancyApplicant GetVA(int id)
+        public VacancyApplicant GetVacancyApplicant(int id)
         {
             return context.VacancyApplicants.SingleOrDefault(p => p.Id == id);
         }
@@ -29,7 +29,7 @@ namespace Project.Core.Models
             return context.Vacancies.SingleOrDefault(p=>p.Id==id);
         }
 
-        public List<VacancyApplicant> GetVacancyApplicant()
+        public List<VacancyApplicant> GetVacancyApplicants()
         {
             return context.VacancyApplicants.ToList();
         }
@@ -46,6 +46,28 @@ namespace Project.Core.Models
             context.SaveChanges();
             return vacancy;
 
+        }
+
+        public VacancyApplicant UpdateVacancyApplicant(VacancyApplicant data)
+        {
+            VacancyApplicant vacancyApplicant = context.VacancyApplicants.SingleOrDefault(p=>p.Id==data.Id);
+            if (vacancyApplicant != null)
+            {
+                vacancyApplicant.InterviewTime = data.InterviewTime;
+                vacancyApplicant.Status = data.Status;
+                vacancyApplicant.InterviewId = data.InterviewId;
+                context.SaveChanges();
+                if (vacancyApplicant.Status == "pass")
+                {
+                    List<VacancyApplicant> vacancyApplicants = context.VacancyApplicants.Where(p => p.ApplicantId == data.ApplicantId && p.Status != "pass").ToList();
+                    foreach (var item in vacancyApplicants)
+                    {
+                        item.Status = "false";
+                    }
+                    context.SaveChanges();
+                }
+            }
+            return vacancyApplicant;
         }
     }
 }

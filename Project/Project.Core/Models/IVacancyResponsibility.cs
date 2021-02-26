@@ -10,7 +10,8 @@ namespace Project.Core.Models
         Vacancy GetVacancy(int id);
         Vacancy UpdateVacancy(Vacancy data);
 
-        List<VacancyApplicant> GetVacancyApplicant();
-        VacancyApplicant GetVA(int id);
+        List<VacancyApplicant> GetVacancyApplicants();
+        VacancyApplicant GetVacancyApplicant(int id);
+        VacancyApplicant UpdateVacancyApplicant(VacancyApplicant data);
     }
 }

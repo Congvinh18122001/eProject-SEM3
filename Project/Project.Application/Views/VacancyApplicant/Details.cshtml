@@ -1,0 +1,67 @@
+﻿@model Project.Core.Objects.VacancyApplicant
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VacancyApplicant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Applicant.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Applicant.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vacancy.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vacancy.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InterviewTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InterviewTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Create_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Create_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", "Interviews")
+</p>

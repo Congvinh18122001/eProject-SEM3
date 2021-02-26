@@ -16,16 +16,34 @@ namespace Project.Application.Controllers
     {
         private CompanyDbContext db = new CompanyDbContext();
         IApplicantResponsibility context = new ApplicantResponsibility();
-
-        public ActionResult Create(int id)
+        public ActionResult Error()
         {
-            ViewBag.vacancyId = id;
-            return View();
+            return RedirectToAction("Index", "Login");
+        }
+        public ActionResult Create(int? id)
+        {
+            if (id.HasValue)
+            {
+                Vacancy vacancy = db.Vacancies.SingleOrDefault(p => p.Id == id.Value);
+                if (vacancy != null)
+                {
+                    ViewBag.vacancyId = id;
+                    return View();
+                }
+            }
+            return RedirectToAction("Index", "Vacancies");
+
         }
         [HttpPost]
         public ActionResult Create(FormCollection f)
         {
             string email = f["Email"];
+            TempData["StatusMessage"] = "You have applied for this job, please check your mail to receive more information.";
+            Vacancy vacancy = db.Vacancies.SingleOrDefault(p=>p.Id==Int32.Parse(f["vacancyId"]));
+            if (vacancy==null)
+            {
+                return RedirectToAction("Index", "Vacancies");
+            }
             Applicant CheckApplicant = context.GetApplicant(email);
             if (CheckApplicant == null)
             {

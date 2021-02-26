@@ -13,6 +13,7 @@ namespace Project.Core.Models
             context.Applicants.Add(applicant);
             context.SaveChanges();
             return applicant;
+
         }
 
         public void AddVacancyApplicant(VacancyApplicant vacancyApplicant)

@@ -20,7 +20,16 @@ namespace Project.Application.Controllers
         {
             return View(db.Applicants.ToList());
         }
-
+        [HttpPost]
+        public ActionResult Index(FormCollection f)
+        {
+            string search = f["search"];
+            if (String.IsNullOrEmpty(search))
+            {
+                return View(db.Applicants.ToList());
+            }
+            return View(db.Applicants.Where(p=>p.Name.Contains(search)).ToList());
+        }
         // GET: ApplicantManages/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,11 +44,15 @@ namespace Project.Application.Controllers
             }
             return View(applicant);
         }
+        public ActionResult Error()
+        {
+            return RedirectToAction("Index", "Login");
+        }
 
         // GET: ApplicantManages/Create
-       
+
 
         // GET: ApplicantManages/Delete/5
-      
+
     }
 }

@@ -48,7 +48,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">BirthDay</label>
             <div class="col-md-10">
-                <input class="form-control" name="BirthDay" onchange="checkBirthday()" id="birthday" type="datetime-local" required />
+                <input class="form-control" name="BirthDay" onchange="checkBirthday()" id="birthday" type="date" required />
                 <span id="checkBirthday" style="color:red"></span>
             </div>
         </div>
@@ -385,10 +385,9 @@
     }
     function CheckSubmit() {
         if (checkValid) {
-            alert("Success!!");
             $("#form").submit();
         } else {
-            alert("Error!!");
+            alert("Error.");
         }
     }
 </script>

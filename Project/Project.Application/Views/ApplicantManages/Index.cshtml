@@ -6,7 +6,11 @@
 }
 
 <h2>Index</h2>
-
+@using (Html.BeginForm())
+{
+    <input  name="search"/>
+    <button type="submit">submit</button>
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
