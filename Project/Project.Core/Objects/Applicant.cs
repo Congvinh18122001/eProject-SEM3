@@ -14,7 +14,7 @@ namespace Project.Core.Objects
         public string Experience { get; set; }
         public string AcademicLevel { get; set; }
         public bool Status { get; set; }
-        public DateTime Create_at { get; set; }//CreatedAt
+        public DateTime CreateAt { get; set; }//CreatedAt
         public virtual ICollection<VacancyApplicant> VacancyApplicants { get; set; }
     }
 }

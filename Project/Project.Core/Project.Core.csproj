@@ -53,27 +53,25 @@
   <ItemGroup>
     <Compile Include="CompanyDbContext.cs" />
     <Compile Include="DbInit.cs" />
-    <Compile Include="Migrations\202102240649271_eProjectDb-v1.cs" />
-    <Compile Include="Migrations\202102240649271_eProjectDb-v1.designer.cs">
-      <DependentUpon>202102240649271_eProjectDb-v1.cs</DependentUpon>
+    <Compile Include="Migrations\202103011304130_eProjectDb-v1.cs" />
+    <Compile Include="Migrations\202103011304130_eProjectDb-v1.designer.cs">
+      <DependentUpon>202103011304130_eProjectDb-v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\ApplicantResponsibility.cs" />
-    <Compile Include="Models\IApplicantResponsibility.cs" />
-    <Compile Include="Models\IInterViewResponsibility.cs" />
-    <Compile Include="Models\ILogin.cs" />
-    <Compile Include="Models\InterviewResponsibility.cs" />
-    <Compile Include="Models\IUserAccount.cs" />
-    <Compile Include="Models\IVacancyResponsibility.cs" />
-    <Compile Include="Models\LoginResponsibility.cs" />
-    <Compile Include="Models\UserAccResponsibility.cs" />
-    <Compile Include="Models\VacancyResponsibility.cs" />
+    <Compile Include="Responsitory\ApplicantResponsibility.cs" />
+    <Compile Include="IResponsitory\IApplicantResponsibility.cs" />
+    <Compile Include="IResponsitory\IInterViewResponsibility.cs" />
+    <Compile Include="IResponsitory\ILogin.cs" />
+    <Compile Include="Responsitory\InterviewResponsibility.cs" />
+    <Compile Include="IResponsitory\IUserAccount.cs" />
+    <Compile Include="IResponsitory\IVacancyResponsibility.cs" />
+    <Compile Include="Responsitory\LoginResponsibility.cs" />
+    <Compile Include="Responsitory\UserAccResponsibility.cs" />
+    <Compile Include="Responsitory\VacancyResponsibility.cs" />
     <Compile Include="Objects\Applicant.cs" />
     <Compile Include="Objects\Department.cs" />
     <Compile Include="Objects\Interview.cs" />
-    <Compile Include="Objects\Role.cs" />
     <Compile Include="Objects\TypeUser.cs" />
-    <Compile Include="Objects\TypeUser_Role.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Objects\Vacancy.cs" />
     <Compile Include="Objects\VacancyApplicant.cs" />
@@ -84,8 +82,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102240649271_eProjectDb-v1.resx">
-      <DependentUpon>202102240649271_eProjectDb-v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103011304130_eProjectDb-v1.resx">
+      <DependentUpon>202103011304130_eProjectDb-v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

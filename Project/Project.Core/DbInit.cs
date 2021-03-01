@@ -13,10 +13,10 @@ namespace Project.Core
         protected override void Seed(CompanyDbContext context)
         {
             List<Department> departments = new List<Department>() {
-            new Department(){Name="HR",Create_At=DateTime.Now },
-            new Department(){Name="Java",Create_At=DateTime.Now },
-            new Department(){Name="PHP",Create_At=DateTime.Now },
-            new Department(){Name="doNet",Create_At=DateTime.Now }
+            new Department(){Name="HR",CreateAt=DateTime.Now },
+            new Department(){Name="Java",CreateAt=DateTime.Now },
+            new Department(){Name="PHP",CreateAt=DateTime.Now },
+            new Department(){Name="doNet",CreateAt=DateTime.Now }
             };
             context.Departments.AddRange(departments);
             List<TypeUser> typeUsers = new List<TypeUser>()

@@ -7,7 +7,7 @@ namespace Project.Core.Objects
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime Create_At { get; set; }
+        public DateTime CreateAt { get; set; }
         public virtual ICollection<Vacancy> Vacancies { get; set; }
     }
 }

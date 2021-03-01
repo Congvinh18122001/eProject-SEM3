@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Project.Core.Objects.VacancyApplicant>
+﻿
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Project.Core.Objects.VacancyApplicant>
+
 
 @{
     ViewBag.Title = "InterviewCensorship";
@@ -6,54 +9,64 @@
 }
 
 <h2>InterviewCensorship</h2>
+@using (Html.BeginForm())
+{
+    <input type="text"  placeholder="Search" name="search" required>
+    <input type="submit" value="submit">
+
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Applicant.Name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Interview.Id)
+            Interview
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vacancy.Name)
+            Vacancy
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InterviewTime)
+            Interview Time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Create_at)
+            Create At
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Applicant.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Interview.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Vacancy.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InterviewTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Create_at)
-        </td>
-        <td>
-            @Html.ActionLink("Censorship", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interview.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vacancy.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterviewTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAt)
+            </td>
+            <td>
+                @Html.ActionLink("Censorship", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page }))

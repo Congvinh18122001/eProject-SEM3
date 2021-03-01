@@ -15,9 +15,7 @@ namespace Project.Core
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vacancy> Vacancies { get; set; }
         public virtual DbSet<VacancyApplicant> VacancyApplicants { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TypeUser> TypeUsers { get; set; }
-        public virtual DbSet<TypeUser_Role> TypeUser_Roles { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

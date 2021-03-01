@@ -31,7 +31,7 @@ namespace Project.Application.Controllers
                 }
                 else if (CheckUser.TypeUserId == 2)
                 {
-
+                    return RedirectToAction("Interview", "VacancyApplicant");
                 }
             }
             return RedirectToAction("Index");

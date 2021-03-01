@@ -1,15 +1,8 @@
-﻿@model IEnumerable<Project.Core.Objects.Vacancy>
-
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Project.Core.Objects.Vacancy>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Client.cshtml";
-}
-
-  
-
-
-@{
-    ViewBag.Title = "Job_list";
 }
 
 <!-- breadcrumbs -->
@@ -18,7 +11,7 @@
         <li class="breadcrumb-item">
             <a href="@Url.Action("Index", "Home")" class="text-white">Home</a>
         </li>
-        <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Job List</li>
+        <li class="breadcrumb-item active text-white font-weight-bold" aria-current="page">Vacancy</li>
     </ol>
 </nav>
 <!-- //breadcrumbs -->
@@ -35,134 +28,128 @@
                     <h3 class="left-widget-job">
                         top employer
                     </h3>
-                    <form action="#" class="widget-content" method="post">
-                        <input type="text" class="form-control my-3" placeholder="Location" required>
-                        <select class="form-control jb_1">
-                            <option value="0">sort by</option>
-                            <option value="">Relevant</option>
-                            <option value="">Date posted (newsest to oldest)</option>
-                            <option value="">Date posted (oldest to newsest)</option>
+                    @using (Html.BeginForm())
+                    {
+                        <input type="text" class="form-control my-3" placeholder="Search" name="search" required>
+                        <input type="submit" value="submit" class="form-control bg-theme " style="color:white">
+                        <select class="form-control my-3" name="option" required>
+                            <option value="0">Search By</option>
+                            <option value="Name">Name</option>
+                            <option value="Language">Language</option>
+                            <option value="Location">Location</option>
+                            <option value="Salary">Salary</option>
+                            <option value="Experience">Experience</option>
                         </select>
-                        <select class="form-control my-3">
-                            <option value="0">Job Title</option>
-                            <option value="">java developer</option>
-                            <option value="">.net developer</option>
-                            <option value="">senior software engineer</option>
-                            <option value="">android developer</option>
-                            <option value="">ios developer</option>
-                        </select>
-                        <input type="submit" value="submit" class="form-control bg-theme text-uppercase">
-                    </form>
+                    }
+
+
                 </div>
-                <div class="left_widget">
-                    <h3 class="left-widget-job">
-                        Last Activity
-                    </h3>
-                    <ul>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat1" id="cat1">
-                            <label for="cat1">Last Hour</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat2" id="cat2">
-                            <label for="cat2">Last 24 hours</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat3" id="cat3">
-                            <label for="cat3">Last 7 days</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="cat4">
-                            <label for="cat4">Last 14 days</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="cat5">
-                            <label for="cat4">Last 30 days</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="cat6">
-                            <label for="cat4">All</label>
-                        </li>
+                @* <div class="left_widget">
+                        <h3 class="left-widget-job">
+                            Last Activity
+                        </h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat1" id="cat1">
+                                <label for="cat1">Last Hour</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat2" id="cat2">
+                                <label for="cat2">Last 24 hours</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat3" id="cat3">
+                                <label for="cat3">Last 7 days</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="cat4">
+                                <label for="cat4">Last 14 days</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="cat5">
+                                <label for="cat4">Last 30 days</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="cat6">
+                                <label for="cat4">All</label>
+                            </li>
 
-                    </ul>
-                </div>
-                <div class="left_widget">
-                    <h3 class="left-widget-job">
-                        Categories
-                    </h3>
-                    <ul>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat2" id="c1">
-                            <label for="cat2">Digital & Creative</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat1" id="c2">
-                            <label for="cat1">Accountancy</label>
-                        </li>
+                        </ul>
+                    </div>
+                    <div class="left_widget">
+                        <h3 class="left-widget-job">
+                            Categories
+                        </h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat2" id="c1">
+                                <label for="cat2">Digital & Creative</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat1" id="c2">
+                                <label for="cat1">Accountancy</label>
+                            </li>
 
-                        <li>
-                            <input type="checkbox" class="checked" name="cat3" id="c3">
-                            <label for="cat3">Estate Agency</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="c4">
-                            <label for="cat4">IT Contractor</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="c5">
-                            <label for="cat4">Banking</label>
-                        </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat3" id="c3">
+                                <label for="cat3">Estate Agency</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="c4">
+                                <label for="cat4">IT Contractor</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="c5">
+                                <label for="cat4">Banking</label>
+                            </li>
 
-                    </ul>
-                </div>
-                <div class="left_widget">
-                    <h3 class="left-widget-job">
-                        More filters
-                    </h3>
-                    <ul>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat2" id="f1">
-                            <label for="cat2">Full time</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat1" id="f2">
-                            <label for="cat1">Part time</label>
-                        </li>
+                        </ul>
+                    </div>
+                    <div class="left_widget">
+                        <h3 class="left-widget-job">
+                            More filters
+                        </h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat2" id="f1">
+                                <label for="cat2">Full time</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat1" id="f2">
+                                <label for="cat1">Part time</label>
+                            </li>
 
-                        <li>
-                            <input type="checkbox" class="checked" name="cat3" id="f3">
-                            <label for="cat3">freelance</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="f4">
-                            <label for="cat4">internship</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="f5">
-                            <label for="cat4">permanent</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" class="checked" name="cat4" id="f6">
-                            <label for="cat4">contact</label>
-                        </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat3" id="f3">
+                                <label for="cat3">freelance</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="f4">
+                                <label for="cat4">internship</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="f5">
+                                <label for="cat4">permanent</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" class="checked" name="cat4" id="f6">
+                                <label for="cat4">contact</label>
+                            </li>
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>*@
             </div>
             <div class="col-lg-8">
                 <div class="row">
+
                     @foreach (var item in Model)
                     {
                         <div class="col-sm-6 e-left">
                             <div class="e-desc">
                                 <h6><a href="@Url.Action("Details", "Vacancies", new { id = item.Id })">@Html.DisplayFor(modelItem => item.Name)</a></h6>
-                                
                                 <ul class="e-tags">
                                     <li>
                                         @Html.DisplayFor(modelItem => item.Language)
-                                    </li>
-                                    <li>
-                                        Applicant - @item.VacancyApplicants.Count()
                                     </li>
                                 </ul>
                                 <hr>
@@ -196,140 +183,15 @@
                         </div>
                     }
                 </div>
-               
-                </div>
-            </div>
 
+            </div>
         </div>
-        @*<div class="d-flex justify-content-center">
-            <ul class="pagination pt-4">
-                <li><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                <li class="active"><a href="#" class="text-white bg-theme">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li>
-                    <a href="#" aria-label="Next"><i class="fa fa-angle-right"></i></a>
-                </li>
-            </ul>
-        </div>*@
+
+    </div>
+    <div class="d-flex justify-content-center">
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))
+    </div>
     </div>
 </section>
 <!-- //jobs -->
 <!-- Footer -->
-<footer id="footer" class="py-sm-5 py-4 bg-theme">
-    <div class="container">
-        <div class="footer-top-w3ls">
-            <h2><a href="index.html" class="navbar-brand">recruit</a></h2>
-            <p class="text-white">
-                Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt
-                ut labore et dolore magna aliquyam
-                erat, At vero eos et accusam et justo duo dolores et ea rebum. Lorem ipsum dolor sit amet, no sea
-                takimata sanctus est Lorem ipsum dolor sit amet. Stet clita kasd gubergren, no sea takimata sanctus
-                est
-                Lorem ipsum dolor sit amet. no sea takimata sanctus est Lorem ipsum dolor sit amet. no sea takimata
-                sanctus est Lorem ipsum dolor sit amet. sed diam voluptua.
-            </p>
-        </div>
-        <div class="row  pt-5">
-            <div class="col-lg-3 col-sm-6 footer_grid1">
-                <h5>Address</h5>
-                <div class="d-flex align-items-center">
-                    <span class="fa fa-building mr-4"></span>
-                    <p>
-                        90 Street, landmark
-                        <br>City State 34189.
-                    </p>
-                </div>
-                <div class="d-flex mt-3 align-items-center">
-                    <span class="fa fa-building mr-4"></span>
-                    <p>
-                        16 Street, landmark
-                        <br>City State 74789.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6 mt-sm-0 mt-5">
-                <h5>Quick links</h5>
-                <ul class="list-unstyled quick-links">
-                    <li>
-                        <a href="index.html">
-                            <span class="fa fa-play"></span>Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="about.html">
-                            <span class="fa fa-play"></span>About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="job_list.html">
-                            <span class="fa fa-play"></span>Job List
-                        </a>
-                    </li>
-                    <li>
-                        <a href="job_single.html">
-                            <span class="fa fa-play"></span>Job Single
-                        </a>
-                    </li>
-                    <li>
-                        <a href="contact.html">
-                            <span class="fa fa-play"></span>Contact
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                <h5>Quick links</h5>
-                <ul class="list-unstyled quick-links">
-                    <li>
-                        <a href="index.html">
-                            <span class="fa fa-play"></span>Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="about.html">
-                            <span class="fa fa-play"></span>About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="job_list.html">
-                            <span class="fa fa-play"></span>Job List
-                        </a>
-                    </li>
-                    <li>
-                        <a href="job_single.html">
-                            <span class="fa fa-play"></span>Job Single
-                        </a>
-                    </li>
-                    <li>
-                        <a href="contact.html">
-                            <span class="fa fa-play"></span>Contact
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-sm-6 mt-lg-0 mt-5">
-                <h5>subscribe to newsletter</h5>
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <input type="email" class="form-control  border-0 border-rounded" id="emailid" placeholder="Enter email"
-                               name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="Submit" class="form-control bg-light-theme  border-0 border-rounded" id="sub"
-                               value="Submit" name="sub">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- /Footer -->
-<div class="cpy-right text-center py-4">
-    <p class="text-dark">
-        © 2018 Recruit. All rights reserved | Design by
-        <a href="http://w3layouts.com" class="text-theme"> W3layouts.</a>
-    </p>
-</div>
-

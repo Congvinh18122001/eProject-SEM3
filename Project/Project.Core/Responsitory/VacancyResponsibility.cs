@@ -57,12 +57,12 @@ namespace Project.Core.Models
                 vacancyApplicant.Status = data.Status;
                 vacancyApplicant.InterviewId = data.InterviewId;
                 context.SaveChanges();
-                if (vacancyApplicant.Status == "pass")
+                if (vacancyApplicant.Status == 2)
                 {
-                    List<VacancyApplicant> vacancyApplicants = context.VacancyApplicants.Where(p => p.ApplicantId == data.ApplicantId && p.Status != "pass").ToList();
+                    List<VacancyApplicant> vacancyApplicants = context.VacancyApplicants.Where(p => p.ApplicantId == data.ApplicantId && p.Status != 2).ToList();
                     foreach (var item in vacancyApplicants)
                     {
-                        item.Status = "false";
+                        item.Status = 1;
                     }
                     context.SaveChanges();
                 }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Project.Core;
 using Project.Core.Objects;
 using Project.Core.Models;
+using PagedList;
 
 namespace Project.Application.Controllers
 {
@@ -22,10 +23,49 @@ namespace Project.Application.Controllers
             User user = Session["Login"] as User;
             return user;
         }
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var vacancies = db.Vacancies.Where(p=>p.Status=="doing").Include(v => v.Department);
-            return View(vacancies.ToList());
+            if (page == null) page = 1;
+            var vacancies = db.Vacancies.Where(p => p.Status == 0).OrderBy(x => x.Id);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(vacancies.ToPagedList(pageNumber, pageSize));
+        }
+        [HttpPost]
+        public ActionResult Index(FormCollection f, int? page)
+        {
+            string search = f["search"];
+            string option = f["option"];
+            if (page == null) page = 1;
+            var vacancies = db.Vacancies.Where(p => p.Status == 0).OrderBy(x => x.Id);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            if (option == "Name")
+            {
+                 vacancies = db.Vacancies.Where(p => p.Status == 0&&p.Name.Contains(search)).OrderBy(x => x.Id);
+                return View(vacancies.ToPagedList(pageNumber, pageSize));
+            }
+            else if (option == "Language")
+            {
+                 vacancies = db.Vacancies.Where(p => p.Status == 0 && p.Language.Contains(search)).OrderBy(x => x.Id);
+                return View(vacancies.ToPagedList(pageNumber, pageSize));
+            }
+            else if (option == "Salary")
+            {
+                 vacancies = db.Vacancies.Where(p => p.Status == 0 && p.Salary.Contains(search)).OrderBy(x => x.Id);
+                return View(vacancies.ToPagedList(pageNumber, pageSize));
+            }
+            else if (option == "Location")
+            {
+                 vacancies = db.Vacancies.Where(p => p.Status == 0 && p.Location.Contains(search)).OrderBy(x => x.Id);
+                return View(vacancies.ToPagedList(pageNumber, pageSize));
+            }
+            else if (option == "Experience")
+            {
+                 vacancies = db.Vacancies.Where(p => p.Status == 0 && p.Experience.Contains(search)).OrderBy(x => x.Id);
+                return View(vacancies.ToPagedList(pageNumber, pageSize));
+            }
+            return View(vacancies.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Vacancies/Details/5
@@ -56,9 +96,9 @@ namespace Project.Application.Controllers
         {
             if (ModelState.IsValid)
             {
-                vacancy.Create_by = GetUser().Id;
+                vacancy.CreateBy = GetUser().Id;
                 vacancy.Posted = DateTime.Now;
-                vacancy.Status = "doing";
+                vacancy.Status = 0;
                 resp.CreateVacancy(vacancy);
                 return RedirectToAction("List");
             }
@@ -75,14 +115,12 @@ namespace Project.Application.Controllers
         {
             if (id.HasValue)
             {
-                List<string> status = new List<string>() {"doing","pause","done" };
-                ViewBag.Status = new SelectList(status);
                 Vacancy vacancy = resp.GetVacancy(id.Value);
                 if (vacancy == null)
                 {
                     return RedirectToAction("List");
                 }
-                User Creater = db.Users.Single(p => p.Id ==vacancy.Create_by);
+                User Creater = db.Users.Single(p => p.Id ==vacancy.CreateBy);
                 ViewBag.Creater = Creater.Name;
                 return View(vacancy);
             }
@@ -91,7 +129,7 @@ namespace Project.Application.Controllers
         [HttpPost]
         public ActionResult Edit(Vacancy vacancy)
         {
-            if (vacancy.Create_by==GetUser().Id)
+            if (vacancy.CreateBy==GetUser().Id)
             {
                 resp.UpdateVacancy(vacancy);
                 return RedirectToAction("DetailsVacancy", new { id=vacancy.Id });

@@ -39,11 +39,6 @@ namespace Project.Application.Controllers
         {
             string email = f["Email"];
             TempData["StatusMessage"] = "You have applied for this job, please check your mail to receive more information.";
-            Vacancy vacancy = db.Vacancies.SingleOrDefault(p=>p.Id==Int32.Parse(f["vacancyId"]));
-            if (vacancy==null)
-            {
-                return RedirectToAction("Index", "Vacancies");
-            }
             Applicant CheckApplicant = context.GetApplicant(email);
             if (CheckApplicant == null)
             {
@@ -56,7 +51,7 @@ namespace Project.Application.Controllers
                 applicant.Address = f["Address"];
                 applicant.Email = f["Email"];
                 applicant.AcademicLevel = f["AcademicLevel"];
-                applicant.Create_at = DateTime.Now;
+                applicant.CreateAt = DateTime.Now;
                 CheckApplicant = context.AddApplication(applicant);
 
             }
@@ -64,8 +59,8 @@ namespace Project.Application.Controllers
             vacancyApplicant.ApplicantId = CheckApplicant.Id;
             vacancyApplicant.VacancyId = Int32.Parse(f["vacancyId"]);
             vacancyApplicant.InterviewTime = Convert.ToDateTime(f["InterviewTime"]);
-            vacancyApplicant.Status = "doing";
-            vacancyApplicant.Create_at = DateTime.Now;
+            vacancyApplicant.Status = 0;
+            vacancyApplicant.CreateAt = DateTime.Now;
             vacancyApplicant.InterviewId = 1;
             context.AddVacancyApplicant(vacancyApplicant);
             return RedirectToAction("Details","Vacancies",new { id = Int32.Parse(f["vacancyId"]) });

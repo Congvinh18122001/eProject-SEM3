@@ -11,14 +11,14 @@ namespace Project.Core.Objects
         public int DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         public virtual Department Department { get; set; }
-        public string Status { get; set; }
+        public int Status { get; set; }
         public string Language { get; set; }
         public string Location { get; set; }
         public string Salary { get; set; }
         public string Experience { get; set; }
         public DateTime Posted { get; set; }
         public string Description { get; set; }
-        public int Create_by { get; set; }
+        public int CreateBy { get; set; }
         //[ForeignKey("UserId")]
         //public virtual User User { get; set; }
 

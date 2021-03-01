@@ -29,46 +29,7 @@
     <!-- Sliderr -->
     <div class="w3-banner-info-w3ltd position-relative">
         <!-- header -->
-        <header>
-            <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light p-0">
-                    <h1>
-                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                            Recruit
-                        </a>
-                    </h1>
-                    <button class="navbar-toggler ml-lg-auto ml-sm-5 bg-light" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="ml-lg-5 navbar-nav mr-lg-auto">
-                            <li class="nav-item active  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                                <a href="@Url.Action("Index", "Home")">Home</a>
-                            </li>
-                            <li class="nav-item  mr-lg-4 mt-lg-0 mt-sm-4 mt-3">
-                                @Html.ActionLink("About", "About", "Home")
-                            </li>
-                            <li class="nav-item dropdown mr-lg-4 my-lg-0 my-sm-4 my-3">
-                                @Html.ActionLink("Vacancy", "Index", "Vacancies")
-                            </li>
-                            <li class="nav-item mr-lg-4 my-lg-0 mb-sm-4 mb-3">
-                                @Html.ActionLink("Contact", "Contact", "Home")
-                            </li>
-                        </ul>
-                        <button type="button" class="btn w3ls-btn text-uppercase font-weight-bold d-block" data-toggle="modal"
-                                aria-pressed="false" data-target="#exampleModal1">
-                            Register
-                        </button>
-                        <button type="button" class="btn w3ls-btn btn-2 ml-lg-1 text-uppercase font-weight-bold d-block"
-                                data-toggle="modal" aria-pressed="false" data-target="#exampleModal">
-                            Sign in
-                        </button>
-                    </div>
-                </nav>
-            </div>
-        </header>
+        @Html.Partial("_HeaderClient")
         <!-- //header -->
         <div class="slider">
             <ul class="rslides" id="slider">
@@ -208,103 +169,7 @@
         </div>
     </div>
     @RenderBody()
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-theme1">
-                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" method="post" class="p-3">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-name"
-                                   required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password"
-                                   required="">
-                        </div>
-                        <div class="right-w3l">
-                            <input type="submit" class="form-control bg-theme" value="Login">
-                        </div>
-                        <div class="row sub-w3l my-3">
-                            <div class="col sub-w3ltd">
-                                <input type="checkbox" id="brand1" value="">
-                                <label for="brand1" class="text-dark">
-                                    <span></span>Remember me?
-                                </label>
-                            </div>
-                            <div class="col forgot-w3l text-right">
-                                <a href="#" class="text-dark">Forgot Password?</a>
-                            </div>
-                        </div>
-                        <p class="text-center dont-do">
-                            Don't have an account?
-                            <a href="#" data-toggle="modal" data-target="#exampleModal1" class="text-dark">
-                                <strong>Register Now</strong>
-                            </a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- //login modal -->
-    <!-- register modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-theme1">
-                    <h5 class="modal-title" id="exampleModalLabel1">Register</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="#" method="post" class="p-3">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Username</label>
-                            <input type="text" class="form-control" placeholder=" " name="Name" id="recipient-rname"
-                                   required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-email" class="col-form-label">Email</label>
-                            <input type="email" class="form-control" placeholder=" " name="Email" id="recipient-email"
-                                   required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="password1" class="col-form-label">Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Password" id="password1"
-                                   required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="password2" class="col-form-label">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2"
-                                   required="">
-                        </div>
-                        <div class="sub-w3l">
-                            <div class="sub-w3ltd">
-                                <input type="checkbox" id="brand2" value="">
-                                <label for="brand2" class="mb-3 text-dark">
-                                    <span></span>I Accept to the Terms & Conditions
-                                </label>
-                            </div>
-                        </div>
-                        <div class="right-w3l">
-                            <input type="submit" class="form-control bg-theme" value="Register">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_FooterClient")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

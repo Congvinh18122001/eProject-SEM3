@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using Project.Core;
 using Project.Core.Objects;
 
@@ -16,9 +17,12 @@ namespace Project.Application.Controllers
         private CompanyDbContext db = new CompanyDbContext();
 
         // GET: ApplicantManages
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Applicants.ToList());
+            if (page == null) page = 1;
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+            return View(db.Applicants.OrderBy(p=>p.Id).ToPagedList(pageNumber,pageSize));
         }
         [HttpPost]
         public ActionResult Index(FormCollection f)

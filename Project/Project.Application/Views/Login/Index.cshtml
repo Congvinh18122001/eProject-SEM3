@@ -1,39 +1,78 @@
-﻿
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
 <html>
 <head>
-    <meta charset="utf-8">
-    <link href="~/Content/Login/css/style.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text.css">
+    <title>Recruit HR Management Category Flat Bootstrap Responsive website Template | Home :: w3layouts</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+          rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-</head>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-<body>
-    <a href="@Url.Action("Index", "Home")" class="btn btn-default">Home</a> 
-    <div class="main">
-        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
-        {
-            <h1><span>Employer</span> <lable> Login </lable> </h1>
-            <div class="inset">
-                <p>
-                    <label for="email">EMAIL ADDRESS</label>
-                    <input type="text" name="Email" placeholder="" required="">
-                </p>
-                <p>
-                    <label for="password">PASSWORD</label>
-                    <input type="password" name="Password" placeholder="" required="">
-                </p>
-            </div>
-
-            <p class="p-container">
-                <input type="submit" value="Login">
-            </p>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
         }
+    </script>
+    <style>
+        body {
+            margin-top: -28px;
+        }
+    </style>
+</head>
+<body class="mb-28">
+    @Html.Partial("_HeaderClient")
+    <div class="" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-theme1">
+                    <h5 class="modal-title">Login Admin</h5>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Email</label>
+                            <input type="text" class="form-control" placeholder=" " name="Email" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label">Password</label>
+                            <input type="password" class="form-control" placeholder=" " name="Password" required="">
+                        </div>
+                        <div class="right-w3l">
+                            <input type="submit" class="form-control bg-theme" style="color:white" value="Login">
+                        </div>
+                        <div class="row sub-w3l my-3">
+                            <div class="col sub-w3ltd">
+                                <input type="checkbox" id="brand1" value="">
+                                <label for="brand1" class="text-dark">
+                                    <span></span>Remember me?
+                                </label>
+                            </div>
+                            <div class="col forgot-w3l text-right">
+                                <a href="#" class="text-dark">Forgot Password?</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="copy-right">
-        <p>Template by <a href="http://w3layouts.com">w3layouts</a></p>
-    </div>
+    @Html.Partial("_FooterClient")
 </body>
 </html>

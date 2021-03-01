@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Project.Core.Models;
 using Project.Core.Objects;
 using Project.Core;
+using PagedList;
+
 namespace Project.Application.Controllers
 {
     public class VacancyApplicantController : Controller
@@ -13,30 +15,41 @@ namespace Project.Application.Controllers
         // GET: VacancyApplicant
         IVacancyResponsibility resp = new VacancyResponsibility();
         private CompanyDbContext context = new CompanyDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
             List<VacancyApplicant> VacancyApplicants = resp.GetVacancyApplicants();
-            return View("InterviewCensorship", VacancyApplicants);
+            if (page == null) page = 1;
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+            return View("InterviewCensorship", VacancyApplicants.OrderBy(x=>x.Id).ToPagedList(pageNumber,pageSize));
         }
         public ActionResult Error()
         {
             return RedirectToAction("Index", "Login");
         }
-        public ActionResult InterviewCensorship()
+        public ActionResult InterviewCensorship(int? page, FormCollection f)
         {
-            Interview interview = new Interview();
             List<VacancyApplicant> VacancyApplicants = resp.GetVacancyApplicants();
-            return View(VacancyApplicants.Where(p=>p.Status=="doing" && p.InterviewId==1));
+            string search = f["search"];
+            if (page == null) page = 1;
+            int pageSize = 1;
+            int pageNumber = (page ?? 1);
+            if (search != null)
+            {
+                return View(VacancyApplicants.Where(x => x.Applicant.Name.Contains(search)).OrderBy(x=>x.Id).ToPagedList(pageNumber, pageSize));
+            }
+
+            Interview interview = new Interview();
+          
+            return View(VacancyApplicants.Where(p=>p.Status==0 && p.InterviewId==1).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Edit(int? id)
         {
-            List<string> Status = new List<string>() { "doing" , "false" , "pass" };
             if (id.HasValue)
             {
                 VacancyApplicant vacancyApplicant = resp.GetVacancyApplicant(id.Value);
                 if (vacancyApplicant!=null)
                 {
-                    ViewBag.Status = new SelectList(Status);
                     ViewBag.Interviews = context.Interviews.ToList();
                     return View(vacancyApplicant);
                 }
@@ -76,8 +89,6 @@ namespace Project.Application.Controllers
                     }
                 }
             }
-            List<string> Status = new List<string>() { "doing", "false", "pass" };
-            ViewBag.Status = new SelectList(Status);
             ViewBag.Interviews = context.Interviews.ToList();
             VacancyApplicant VacancyApplicant = resp.GetVacancyApplicant(data.Id);
             VacancyApplicant.InterviewTime = data.InterviewTime;
@@ -95,6 +106,32 @@ namespace Project.Application.Controllers
             }
             return RedirectToAction("InterviewCensorship");
         }
-        
+        public ActionResult Details01(int? id)
+        {
+            if (id.HasValue)
+            {
+                VacancyApplicant vacancyApplicant = resp.GetVacancyApplicant(id.Value);
+                if (vacancyApplicant != null)
+                {
+                    return View(vacancyApplicant);
+                }
+            }
+            return RedirectToAction("InterviewCensorship");
+        }
+        public ActionResult Interview(int? page)
+        {
+            if (Session["Login"] != null)
+            {
+                User user = Session["Login"] as User;
+                List<Interview> Interviews = user.Interviews.ToList();
+                if (page == null) page = 1;
+                int pageSize = 1;
+                int pageNumber = (page ?? 1);
+                return View(Interviews.Where(p => p.Id != 1).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
+            }
+            return RedirectToAction("Index", "Vacancies");
+
+        }
+
     }
 }

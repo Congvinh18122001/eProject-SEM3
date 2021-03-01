@@ -12,9 +12,9 @@ namespace Project.Core.Objects
         public int VacancyId { get; set; }
         [ForeignKey("VacancyId")]
         public virtual Vacancy Vacancy { get; set; }
-        public string Status { get; set; }
+        public int Status { get; set; }
         public DateTime InterviewTime { get; set; }
-        public DateTime Create_at { get; set; }
+        public DateTime CreateAt { get; set; }
         public int InterviewId { get; set; }
         [ForeignKey("InterviewId")]
         public virtual Interview Interview { get; set; }

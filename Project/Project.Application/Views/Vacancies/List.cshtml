@@ -77,12 +77,12 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Create_by)
+            @Html.DisplayFor(modelItem => item.CreateBy)
         </td>
         <td>
             @if (user!=null)
             {
-                if (item.Create_by == user.Id)
+                if (item.CreateBy == user.Id)
                 {
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id });
                 }

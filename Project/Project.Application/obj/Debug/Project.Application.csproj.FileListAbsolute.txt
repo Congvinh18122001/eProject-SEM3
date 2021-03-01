@@ -84,3 +84,7 @@ D:\SEM3\Project\Project.Application\obj\Debug\Project.Application.csproj.CoreCom
 D:\SEM3\Project\Project.Application\obj\Debug\Project.Application.csproj.CopyComplete
 D:\SEM3\Project\Project.Application\obj\Debug\Project.Application.dll
 D:\SEM3\Project\Project.Application\obj\Debug\Project.Application.pdb
+D:\SEM3\Project\Project.Application\bin\PagedList.dll
+D:\SEM3\Project\Project.Application\bin\PagedList.Mvc.dll
+D:\SEM3\Project\Project.Application\bin\PagedList.xml
+D:\SEM3\Project\Project.Application\bin\PagedList.Mvc.xml
