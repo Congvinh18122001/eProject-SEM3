@@ -5,7 +5,7 @@ namespace Project.Core.Models
     public interface IApplicantResponsibility
     {
         List<Applicant> GetApplicants();
-        Applicant GetApplicant(string Email);
+        Applicant GetApplicant(string Email, string Phone);
         Applicant AddApplication(Applicant applicant);
         void AddVacancyApplicant(VacancyApplicant vacancyApplicant);
     }

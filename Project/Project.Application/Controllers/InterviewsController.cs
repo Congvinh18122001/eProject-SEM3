@@ -19,7 +19,7 @@ namespace Project.Application.Controllers
         {
             List<Interview> Interviews = resp.GetInterviews();
             if (page == null) page = 1;
-            int pageSize = 1;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(Interviews.Where(p => p.Id != 1).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
@@ -35,10 +35,21 @@ namespace Project.Application.Controllers
         [HttpPost]
         public ActionResult Create( Interview interview)
         {
+            bool IsCheck = true;
             if (interview != null)
             {
-                interview = resp.CreateInterView(interview);
-                return RedirectToAction("Index");
+                foreach (var item in resp.GetInterviews())
+                {
+                    if (item.UserId==interview.UserId)
+                    {
+                        IsCheck = false;
+                    }
+                }
+                if (IsCheck)
+                {
+                    interview = resp.CreateInterView(interview);
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.UserId = new SelectList(context.Users.Where(p => p.TypeUserId == 2), "Id", "Name");

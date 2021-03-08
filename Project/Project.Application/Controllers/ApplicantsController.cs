@@ -38,8 +38,9 @@ namespace Project.Application.Controllers
         public ActionResult Create(FormCollection f)
         {
             string email = f["Email"];
+            string phone = f["Phone"];
             TempData["StatusMessage"] = "You have applied for this job, please check your mail to receive more information.";
-            Applicant CheckApplicant = context.GetApplicant(email);
+            Applicant CheckApplicant = context.GetApplicant(email, phone);
             if (CheckApplicant == null)
             {
                 Applicant applicant = new Applicant();
@@ -54,6 +55,12 @@ namespace Project.Application.Controllers
                 applicant.CreateAt = DateTime.Now;
                 CheckApplicant = context.AddApplication(applicant);
 
+            }
+            if (CheckApplicant.Status==false)
+            {
+                TempData["messErr"] = "You applied to company.";
+                ViewBag.vacancyId = Int32.Parse(f["vacancyId"]);
+                return View();
             }
             VacancyApplicant vacancyApplicant = new VacancyApplicant();
             vacancyApplicant.ApplicantId = CheckApplicant.Id;

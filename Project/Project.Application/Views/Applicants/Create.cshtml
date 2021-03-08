@@ -26,88 +26,89 @@
             <span class="title-wthree">a world full of possibilities</span>
             <h4 class="w3layouts_pvt-head">allowing you to expand quickly.</h4>
         </div>
+        <h1 class="w3layouts_pvt-head" style="color:red">@TempData["messErr"]</h1>
         @using (Html.BeginForm("Create", "Applicants", FormMethod.Post, new { id = "form" }))
         {
             @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Applicant</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <h4>Applicant</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <input name="vacancyId" value="@vacancyId" style="display:none" />
-        <div class="form-group">
-            <label class="control-label col-md-2">Name</label>
-            <div class="col-md-10">
-                <input name="Name" class="form-control" type="text" onkeyup="checkName()" id="name"  required/>
-                <span id="checkname" style="color:red"></span>
-            </div>
-        </div>
+                <input name="vacancyId" value="@vacancyId" style="display:none" />
+                <div class="form-group">
+                    <label class="control-label col-md-2">Name</label>
+                    <div class="col-md-10">
+                        <input name="Name" class="form-control" type="text" onkeyup="checkName()" id="name" required />
+                        <span id="checkname" style="color:red"></span>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">BirthDay</label>
-            <div class="col-md-10">
-                <input class="form-control" name="BirthDay" onchange="checkBirthday()" id="birthday" type="date" required />
-                <span id="checkBirthday" style="color:red"></span>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">BirthDay</label>
+                    <div class="col-md-10">
+                        <input class="form-control" name="BirthDay" onchange="checkBirthday()" id="birthday" type="date" required />
+                        <span id="checkBirthday" style="color:red"></span>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Address</label>
-            <div class="col-md-10">
-                <input name="Address" class="form-control" onkeyup="checkAddress()" id="address" type="text"  required/>
-                <span id="checkaddress" style="color:red"></span>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Address</label>
+                    <div class="col-md-10">
+                        <input name="Address" class="form-control" onkeyup="checkAddress()" id="address" type="text" required />
+                        <span id="checkaddress" style="color:red"></span>
 
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Email</label>
-            <div class="col-md-10">
-                <input name="Email" class="form-control" type="email" id="email" onkeyup="checkEmail()"  required/>
-                <span id="checkemail" style="color:red"></span>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Email</label>
+                    <div class="col-md-10">
+                        <input name="Email" class="form-control" type="email" id="email" onkeyup="checkEmail()" required />
+                        <span id="checkemail" style="color:red"></span>
 
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Phone</label>
-            <div class="col-md-10">
-                <input name="Phone" class="form-control" id="phone" onkeyup="checkPhone()" type="text" required/>
-                <span id="checkphone" style="color:red"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Experience</label>
-            <div class="col-md-10">
-                <input name="Experience" class="form-control" id="experience" onkeyup="checkExperience()" type="text"  required/>
-                <span id="checkexprience" style="color:red"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Phone</label>
+                    <div class="col-md-10">
+                        <input name="Phone" class="form-control" id="phone" onkeyup="checkPhone()" type="text" required />
+                        <span id="checkphone" style="color:red"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Experience</label>
+                    <div class="col-md-10">
+                        <input name="Experience" class="form-control" id="experience" onkeyup="checkExperience()" type="text" required />
+                        <span id="checkexprience" style="color:red"></span>
 
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Academic Level</label>
-            <div class="col-md-10">
-                <input name="AcademicLevel" class="form-control" id="academiclevel" onkeyup="academicLevel()" type="text"  required/>
-                <span id="checkacademic" style="color:red"></span>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Academic Level</label>
+                    <div class="col-md-10">
+                        <input name="AcademicLevel" class="form-control" id="academiclevel" onkeyup="academicLevel()" type="text" required />
+                        <span id="checkacademic" style="color:red"></span>
 
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Interview Time</label>
+                    <div class="col-md-10">
+                        <input name="InterviewTime" class="form-control" id="interviewtime" onchange="checkInterviewTime()" type="date" required />
+                        <span id="checktime" style="color:red"></span>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input value="Create" type="button" onclick="CheckSubmit()" class="btn btn-dark" />
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Interview Time</label>
-            <div class="col-md-10">
-                <input name="InterviewTime" class="form-control" id="interviewtime" onchange="checkInterviewTime()" type="date" required/>
-                <span id="checktime" style="color:red"></span>
-            </div>
-            
-        </div>
-        
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input value="Create" type="button" onclick="CheckSubmit()"  class="btn btn-dark" />
-            </div>
-        </div>
-    </div>
         }
     </div>
 </section>

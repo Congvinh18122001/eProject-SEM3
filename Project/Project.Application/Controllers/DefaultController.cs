@@ -1,19 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using Project.Core;
 using Project.Core.Models;
 using Project.Core.Objects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 namespace Project.Application.Controllers
 {
     public class DefaultController : Controller
     {
+        private CompanyDbContext db = new CompanyDbContext();
         IUserAccount resp = new UserAccResponsibility();
         // GET: Default
         public ActionResult Index()
         {
-            
+            ViewBag.TotalApplicant = db.Applicants.Count();
+            ViewBag.TotalVacancy = db.Vacancies.Count();
+            ViewBag.VacancyApplicant = db.VacancyApplicants.Count();
+            List<Applicant> Applicants = db.Applicants.Where(p => p.Status == false).ToList();
+            if (Applicants!=null)
+            {
+                ViewBag.ApplicantSuccess = Applicants.Count();
+            }
+            else
+            {
+                ViewBag.ApplicantSuccess = 0;
+            }
             return View();
         }
         public PartialViewResult Menu()
@@ -23,13 +35,13 @@ namespace Project.Application.Controllers
 
         public ActionResult Error()
         {
-            return RedirectToAction("Index","Login");
+            return RedirectToAction("Index", "Login");
         }
         public ActionResult Profile(int? id)
         {
-            if (id ==null)
+            if (id == null)
             {
-                return RedirectToAction("Logout","Login");
+                return RedirectToAction("Logout", "Login");
             }
             User user = resp.GetUser(id.Value);
             return View(user);
@@ -61,7 +73,7 @@ namespace Project.Application.Controllers
             user.Email = f["Email"];
             user.Avatar = f["Avatar"];
             resp.UpdateUser(user);
-            return RedirectToAction("Profile",new {id=id });
+            return RedirectToAction("Profile", new { id = id });
         }
 
     }

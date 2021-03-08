@@ -25,7 +25,7 @@ namespace Project.Application.Controllers
             {
                 CheckUser.Password = null;
                 Session["Login"] = CheckUser;
-                if (CheckUser.TypeUser.Name == "Hr")
+                if (CheckUser.TypeUserId == 1)
                 {
                     return RedirectToAction("Index", "Default");
                 }
@@ -34,6 +34,8 @@ namespace Project.Application.Controllers
                     return RedirectToAction("Interview", "VacancyApplicant");
                 }
             }
+            TempData["StatusMessage"] = "Email or Password is not valid.";
+
             return RedirectToAction("Index");
         }
 

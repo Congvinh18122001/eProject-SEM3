@@ -106,20 +106,97 @@ namespace Project.Application.Controllers
             return View();
 
         }
-        public ActionResult List()
+        public ActionResult List(FormCollection f, int? page)
         {
-            List<Vacancy> vacancies = resp.GetVacancies();
-            return View(vacancies);
+            string search = f["search"];
+            ViewBag.Title = "List";
+            var vacancies = db.Vacancies.OrderBy(x => x.Id);
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            if (search != null)
+            {
+                return View(vacancies.Where(p => p.Name.Contains(search)).ToPagedList(pageNumber, pageSize));
+            }
+            return View(vacancies.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult StatusDoing(FormCollection f, int? page)
+        {
+            string search = f["search"];
+            ViewBag.Title = "StatusDoing";
+            var vacancies = db.Vacancies.Where(p=>p.Status==0).OrderBy(x => x.Id);
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            if (search != null)
+            {
+                return View("List", vacancies.Where(p => p.Name.Contains(search)).ToPagedList(pageNumber, pageSize));
+            }
+            return View("List",vacancies.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult StatusPause(FormCollection f, int? page)
+        {
+            string search = f["search"];
+            ViewBag.Title = "StatusPause";
+            var vacancies = db.Vacancies.Where(p => p.Status == 1).OrderBy(x => x.Id);
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            if (search != null)
+            {
+                return View("List", vacancies.Where(p => p.Name.Contains(search)).ToPagedList(pageNumber, pageSize));
+            }
+            return View("List", vacancies.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult StatusStop(FormCollection f, int? page)
+        {
+            string search = f["search"];
+            ViewBag.Title = "StatusStop";
+            var vacancies = db.Vacancies.Where(p => p.Status == 2).OrderBy(x => x.Id);
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            if (search != null)
+            {
+                return View("List", vacancies.Where(p => p.Name.Contains(search)).ToPagedList(pageNumber, pageSize));
+            }
+            return View("List", vacancies.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult Owner(FormCollection f, int? page)
+        {
+            User user = Session["Login"] as User;
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            if (user !=null)
+            {
+                string search = f["search"];
+                ViewBag.Title = "Owner";
+                var vacancies = db.Vacancies.Where(p => p.CreateBy == user.Id);
+                if (vacancies.Count()>0)
+                {
+                    vacancies = vacancies.OrderBy(x => x.Id);
+                   
+                    if (search != null)
+                    {
+                        return View("List", vacancies.Where(p => p.Name.Contains(search)).ToPagedList(pageNumber, pageSize));
+                    }
+                }
+                return View("List", vacancies.ToPagedList(pageNumber, pageSize));
+            }
+            return RedirectToAction("List");
         }
         public ActionResult Edit(int? id)
         {
             if (id.HasValue)
             {
                 Vacancy vacancy = resp.GetVacancy(id.Value);
-                if (vacancy == null)
+                
+                if (vacancy == null || vacancy.Status==2)
                 {
                     return RedirectToAction("List");
                 }
+   
                 User Creater = db.Users.Single(p => p.Id ==vacancy.CreateBy);
                 ViewBag.Creater = Creater.Name;
                 return View(vacancy);
@@ -143,10 +220,13 @@ namespace Project.Application.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Vacancy vacancy = db.Vacancies.Find(id);
+
             if (vacancy == null)
             {
                 return RedirectToAction("List");
             }
+            User creater = db.Users.Single(p=>p.Id==vacancy.CreateBy);
+            ViewBag.CreateBy = creater.Name;
             return View(vacancy);
         }
     }

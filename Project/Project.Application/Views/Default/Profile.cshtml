@@ -12,46 +12,38 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TypeUser.Name)
+            <i class="fa fa-shield" aria-hidden="true"></i> Position
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.TypeUser.Name)
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            <i class="fa fa-user" aria-hidden="true"></i> Full Name
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Birthday)
+            <i class="fa fa-birthday-cake" aria-hidden="true"></i> Birthday
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Birthday)
-        </dd>
+            @String.Format("{0:dddd, dd MMM yyyy}", Model.Birthday)
 
+        </dd>
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            <i class="fa fa-envelope" aria-hidden="true"></i> Email
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Avatar)
-        </dd>
-
     </dl>
 </div>
+<hr />
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    @Html.ActionLink("Edit Profile", "Edit", new { id = Model.Id })
 </p>

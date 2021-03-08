@@ -8,7 +8,7 @@
 }
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "VacancyApplicant", FormMethod.Post, new { id = "form" }))
 {
     @Html.AntiForgeryToken()
     
@@ -37,9 +37,9 @@
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                <select name="Status" class="form-control">
-                   <option @(Model.Status==0)?"selected":""  value="0">Doing</option>
-                   <option @(Model.Status==1)?"selected":"" value="1">False</option>
-                   <option @(Model.Status==2)?"selected":"" value="2">Pass</option>
+                   <option @((Model.Status==0)?"selected":"")  value="0">Doing</option>
+                   <option @((Model.Status==1)?"selected":"" )value="1">False</option>
+                   <option @((Model.Status==2)?"selected":"") value="2">Pass</option>
                </select>
             </div>
         </div>
@@ -47,8 +47,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InterviewTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="datetime" value="@Model.InterviewTime" class="form-control" name="InterviewTime"  />
+                <input type="datetime" id="InterviewTime" value="@Model.InterviewTime" class="form-control" name="InterviewTime" onkeyup="Datetime()" />
             </div>
+            <span id="checkInterviewTime" style="color:red"></span>
+
         </div>
 
         <div class="form-group">
@@ -73,7 +75,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" onclick="CheckSubmit()" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -82,3 +84,26 @@
 <div>
     @Html.ActionLink("Back to List", "Index", "Interviews")
 </div>
+<script>
+    var checkValid = true;
+    function Datetime() {
+        var academiclevel = $("#InterviewTime").val();
+        var vnf_regex = /((1[0-2]|0?[1-9]):([0-5][0-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
+            if (vnf_regex.test(academiclevel) == false) {
+                document.getElementById("checkInterviewTime").innerHTML = "*The InterviewTime is not valid !";
+                checkValid = false;
+            }
+            else {
+                document.getElementById("checkInterviewTime").innerHTML = "";
+                checkValid = true;
+            }
+        
+    }
+    function CheckSubmit() {
+        if (checkValid) {
+            $("#form").submit();
+        } else {
+            alert("Error.");
+        }
+    }
+</script>

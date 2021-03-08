@@ -8,7 +8,12 @@
     Layout = "~/Views/Shared/_Client.cshtml";
 }
 
-<h2>Interview</h2>
+<h2 class="text-center">Interview Management</h2>
+@using (Html.BeginForm())
+{
+    <input type="search" name="search" required />
+    <input type="submit" value="Search by name" />
+}
 
 <table class="table">
     <tr>

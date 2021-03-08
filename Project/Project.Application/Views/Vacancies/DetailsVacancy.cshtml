@@ -18,7 +18,7 @@
         <dd>
             @Html.DisplayFor(model => model.Department.Name)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -26,15 +26,15 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @((Model.Status == 0)?"Doing":(Model.Status==1)?"Pause":"Stop")
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Language)
         </dt>
@@ -42,7 +42,7 @@
         <dd>
             @Html.DisplayFor(model => model.Language)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Location)
         </dt>
@@ -50,7 +50,7 @@
         <dd>
             @Html.DisplayFor(model => model.Location)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Salary)
         </dt>
@@ -58,7 +58,7 @@
         <dd>
             @Html.DisplayFor(model => model.Salary)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Experience)
         </dt>
@@ -66,7 +66,7 @@
         <dd>
             @Html.DisplayFor(model => model.Experience)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Posted)
         </dt>
@@ -74,7 +74,7 @@
         <dd>
             @Html.DisplayFor(model => model.Posted)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -82,15 +82,15 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.CreateBy)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CreateBy)
+            @ViewBag.CreateBy
         </dd>
-
+        <hr />
     </dl>
 </div>
 <p>

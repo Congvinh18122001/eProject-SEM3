@@ -28,6 +28,7 @@
             window.scrollTo(0, 1);
         }
     </script>
+   
     <style>
         body {
             margin-top: -28px;
@@ -54,6 +55,8 @@
                             <label for="password" class="col-form-label">Password</label>
                             <input type="password" class="form-control" placeholder=" " name="Password" required="">
                         </div>
+                        <span style="color:red">@TempData["StatusMessage"]</span>
+                        <br />
                         <div class="right-w3l">
                             <input type="submit" class="form-control bg-theme" style="color:white" value="Login">
                         </div>

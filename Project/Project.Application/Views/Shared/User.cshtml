@@ -11,17 +11,15 @@
 }
 else
 {
-    <li class="nav-item dropdown nav-user">
-        <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="@user.Avatar" alt="" class="user-avatar-md rounded-circle"></a>
-        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-            <div class="nav-user-info">
-                <h5 class="mb-0 text-white nav-user-name">@user.Name</h5>
-                <span class="status"></span><span class="ml-2">Available</span>
-            </div>
+    <div class="dropdown pr-2">
+        <button class="btn btn-default dropdown-toggle" style="color:black" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @user.Name
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="@Url.Action("Profile","Default",new {id=user.Id })"><i class="fas fa-user mr-2"></i>Account</a>
-            <a class="dropdown-item" href="@Url.Action("Logout","Login")"><i class="fas fa-power-off mr-2"></i>Logout</a>
+            <a class="dropdown-item" href="@Url.Action("Logout","Login")"><i class="fas fa-power-off mr-2"></i>Log out</a>
         </div>
-    </li>
+    </div>
 }
 
 

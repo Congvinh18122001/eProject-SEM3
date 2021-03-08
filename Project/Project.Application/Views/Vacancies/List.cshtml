@@ -1,95 +1,111 @@
 ﻿@using Project.Core.Objects;
-@model IEnumerable<Project.Core.Objects.Vacancy>
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Project.Core.Objects.Vacancy>
 
 @{
-    ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
     User user = Session["Login"] as User;
- }
+}
 
-<h2>List</h2>
-
+<h2 class="text-center">Vacanies Management</h2>
+@using (Html.BeginForm())
+{
+    <input type="search" placeholder="Search by name" name="search" required />
+    <input type="submit" value="Search" />
+}
+<br />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create") || @Html.ActionLink("Doing", "StatusDoing") || @Html.ActionLink("Pause", "StatusPause") || @Html.ActionLink("Stop", "StatusStop") || @Html.ActionLink("Owner", "Owner")
 </p>
+<hr />
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Department.Name)
+            Department
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Status
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Language)
+            Language
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            Location
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Salary)
+            Salary
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Experience)
+            Experience
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Posted)
+            Posted
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Create_by)
-        </th>
+
         @*<th></th>*@
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Language)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Experience)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Posted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateBy)
-        </td>
-        <td>
-            @if (user!=null)
-            {
-                if (item.CreateBy == user.Id)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @((item.Status == 0)?"Doing":(item.Status==1)?"Pause":"Stop")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Posted)
+            </td>
+            <td>
+                @if (user != null && item.Status != 2)
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                    if (item.CreateBy == user.Id)
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id });
+                    }
                 }
-            }
-            |@Html.ActionLink("Details", "Details", new { id = item.Id })
-        </td>
-    </tr>
-}
+                @Html.ActionLink("Details", "DetailsVacancy", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+@if (ViewBag.Title == "List")
+{
+    @Html.PagedListPager(Model, Page => Url.Action("List", new { Page }))
+}
+else if (ViewBag.Title == "StatusDoing")
+{
+    @Html.PagedListPager(Model, Page => Url.Action("StatusDoing", new { Page }))
+}
+else if (ViewBag.Title == "StatusPause")
+{
+    @Html.PagedListPager(Model, Page => Url.Action("StatusPause", new { Page }))
+}
+else if (ViewBag.Title == "StatusStop")
+{
+    @Html.PagedListPager(Model, Page => Url.Action("StatusStop", new { Page }))
+}
+else if (ViewBag.Title == "Owner")
+{
+    @Html.PagedListPager(Model, Page => Url.Action("Owner", new { Page }))
+}

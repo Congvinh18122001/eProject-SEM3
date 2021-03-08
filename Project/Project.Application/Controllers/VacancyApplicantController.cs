@@ -15,29 +15,42 @@ namespace Project.Application.Controllers
         // GET: VacancyApplicant
         IVacancyResponsibility resp = new VacancyResponsibility();
         private CompanyDbContext context = new CompanyDbContext();
-        public ActionResult Index(int? page)
+        public ActionResult Index(FormCollection f, int? page)
         {
-            List<VacancyApplicant> VacancyApplicants = resp.GetVacancyApplicants();
+            string search = f["search"];
+            List<VacancyApplicant> VacancyApplicants = resp.GetVacancyApplicants().Where(p=>p.Status==0).ToList();
             if (page == null) page = 1;
-            int pageSize = 1;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
-            return View("InterviewCensorship", VacancyApplicants.OrderBy(x=>x.Id).ToPagedList(pageNumber,pageSize));
+            if(search != null)
+            {
+                return View(VacancyApplicants.Where(p => p.Applicant.Name.Contains(search)).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
+            }
+            return View(VacancyApplicants.OrderBy(x=>x.Id).ToPagedList(pageNumber,pageSize));
+        }
+        public ActionResult List(FormCollection f, int? page)
+        {
+            string search = f["search"];
+            List<VacancyApplicant> VacancyApplicants = resp.GetVacancyApplicants().ToList();
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+            if (search != null)
+            {
+                return View(VacancyApplicants.Where(p => p.Applicant.Name.Contains(search)).OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
+            }
+            return View(VacancyApplicants.OrderBy(x => x.Id).ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Error()
         {
             return RedirectToAction("Index", "Login");
         }
-        public ActionResult InterviewCensorship(int? page, FormCollection f)
-        {
+        public ActionResult InterviewCensorship(int? page)
+        { 
             List<VacancyApplicant> VacancyApplicants = resp.GetVacancyApplicants();
-            string search = f["search"];
             if (page == null) page = 1;
-            int pageSize = 1;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
-            if (search != null)
-            {
-                return View(VacancyApplicants.Where(x => x.Applicant.Name.Contains(search)).OrderBy(x=>x.Id).ToPagedList(pageNumber, pageSize));
-            }
 
             Interview interview = new Interview();
           

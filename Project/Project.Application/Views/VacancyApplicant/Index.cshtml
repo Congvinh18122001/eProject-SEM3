@@ -1,14 +1,23 @@
 ﻿
 @using PagedList.Mvc;
 @model PagedList.IPagedList<Project.Core.Objects.VacancyApplicant>
-
-
 @{
-    ViewBag.Title = "InterviewCensorship";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>InterviewCensorship</h2>
+<h2>Index</h2>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    <input type="text" placeholder="Search by name" name="search" required>
+    <input type="submit" value="submit">
+
+}
+<hr />
+<a href="@Url.Action("List")">All Vacancy Aplicants</a>
 <table class="table">
     <tr>
         <th>
@@ -45,7 +54,7 @@
                 @Html.DisplayFor(modelItem => item.Vacancy.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
+                @((item.Status == 0)?"Doing":(item.Status==1)?"Pass":"False")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InterviewTime)

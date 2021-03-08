@@ -1,20 +1,18 @@
-﻿
-@using PagedList.Mvc;
+﻿@using PagedList.Mvc;
 @model PagedList.IPagedList<Project.Core.Objects.Applicant>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
+<br>
+<h2 class="text-center">Applicants Management</h2>
 @using (Html.BeginForm())
 {
-    <input name="search" />
-    <button type="submit">submit</button>
+    <input type="search" name="search" />
+    <input type="submit" value="Search" />
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<br />
+
 <table class="table">
     <tr>
         <th>
@@ -84,6 +82,4 @@
     }
 
 </table>
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page }))
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }))

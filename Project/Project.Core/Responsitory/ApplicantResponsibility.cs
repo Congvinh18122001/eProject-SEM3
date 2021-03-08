@@ -22,9 +22,9 @@ namespace Project.Core.Models
             context.SaveChanges();
         }
 
-        public Applicant GetApplicant(string Email)
+        public Applicant GetApplicant(string Email ,string Phone)
         {
-            return context.Applicants.SingleOrDefault(p=>p.Email==Email);
+            return context.Applicants.SingleOrDefault(p=>p.Email==Email || p.Phone==Phone);
         }
 
         public List<Applicant> GetApplicants()

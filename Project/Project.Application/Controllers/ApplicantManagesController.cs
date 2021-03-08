@@ -20,19 +20,24 @@ namespace Project.Application.Controllers
         public ActionResult Index(int? page)
         {
             if (page == null) page = 1;
-            int pageSize = 1;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(db.Applicants.OrderBy(p=>p.Id).ToPagedList(pageNumber,pageSize));
         }
         [HttpPost]
-        public ActionResult Index(FormCollection f)
+        public ActionResult Index(FormCollection f, int? page)
         {
             string search = f["search"];
+
+            var applicant = db.Applicants.Where(p => p.Name.Contains(search)).OrderBy(x => x.Id);
+            if (page == null) page = 1;
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
             if (String.IsNullOrEmpty(search))
             {
-                return View(db.Applicants.ToList());
+                return View(applicant.ToPagedList(pageNumber, pageSize));
             }
-            return View(db.Applicants.Where(p=>p.Name.Contains(search)).ToList());
+            return View(applicant.ToPagedList(pageNumber, pageSize));
         }
         // GET: ApplicantManages/Details/5
         public ActionResult Details(int? id)

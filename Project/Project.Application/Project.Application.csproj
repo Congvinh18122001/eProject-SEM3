@@ -819,6 +819,8 @@
     <Content Include="Views\Shared\_FooterClient.cshtml" />
     <Content Include="Views\VacancyApplicant\Interview.cshtml" />
     <Content Include="Views\VacancyApplicant\Details01.cshtml" />
+    <Content Include="Views\VacancyApplicant\Index.cshtml" />
+    <Content Include="Views\VacancyApplicant\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

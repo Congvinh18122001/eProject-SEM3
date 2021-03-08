@@ -1,8 +1,82 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div id="layoutSidenav_content">
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Dashboard</h1>
+            <ol class="breadcrumb mb-4">
+            </ol>
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-primary text-white mb-4">
+                        <div class="card-body text-center" style="font-size:20px; font-weight:bold">Total Applicants</div>
+                        <div class="card-footer" style="height:200px">
+                            <div class="card-text text-center pt-3" style="color:black;height:160px;font-size:100px">@ViewBag.TotalApplicant</div>
+                            <div class="" style="height:40px; float:right"><a class="text-black" href="@Url.Action("Index","ApplicantManages")">View Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-warning text-white mb-4">
+                        <div class="card-body text-center" style="font-size:20px; font-weight:bold">Total Vacancies</div>
+                        <div class="card-footer" style="height:200px">
+                            <div class="card-text text-center pt-3" style="color:black;height:160px;font-size:100px">@ViewBag.TotalVacancy</div>
+                            <div class="" style="height:40px; float:right"><a class="text-black" href="@Url.Action("Index","VacancyApplicant")">View Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-danger text-white mb-4">
+                        <div class="card-body text-center" style="font-size:20px; font-weight:bold">Total Interviews</div>
+                        <div class="card-footer" style="height:200px">
+                            <div class="card-text text-center pt-3" style="color:black;height:160px;font-size:100px">@ViewBag.VacancyApplicant</div>
+                            <div class="" style="height:40px; float:right"><a class="text-black" href="@Url.Action("Index","Interviews")">View Details</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-success text-white mb-4">
+                        <div class="card-body text-center" style="font-size:20px; font-weight:bold">Applicant Success</div>
+                        <div class="card-footer" style="height:200px">
+                            <div class="card-text text-center pt-3" style="color:black;height:160px;font-size:100px">@ViewBag.ApplicantSuccess</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<h2>Index</h2>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-table mr-1"></i>
+                    Interview
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Interviewer</th>
+                                    <th>Vacancy</th>
+                                    <th>Total Applicant</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                </tr>
 
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+    </div>

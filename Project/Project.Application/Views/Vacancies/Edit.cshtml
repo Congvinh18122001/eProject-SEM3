@@ -38,9 +38,9 @@
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select name="Status" class="form-control">
-                    <option @(Model.Status == 0) ?"selected":"" value="0">Doing</option>
-                    <option @(Model.Status == 1) ?"selected":"" value="1">Pause</option>
-                    <option @(Model.Status == 2) ?"selected":"" value="2">Done</option>
+                    <option @((Model.Status == 0) ?"selected":"") value="0">Doing</option>
+                    <option @((Model.Status == 1) ?"selected":"") value="1">Pause</option>
+                    <option @((Model.Status == 2) ?"selected":"") value="2">Stop</option>
                 </select>
             </div>
         </div>

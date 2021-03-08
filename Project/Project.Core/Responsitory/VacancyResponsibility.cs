@@ -65,6 +65,12 @@ namespace Project.Core.Models
                         item.Status = 1;
                     }
                     context.SaveChanges();
+                    Applicant applicant = context.Applicants.SingleOrDefault(p=>p.Id==data.ApplicantId);
+                    if (applicant!=null)
+                    {
+                        applicant.Status = false;
+                        context.SaveChanges();
+                    }
                 }
             }
             return vacancyApplicant;
